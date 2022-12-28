@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bus;
 use Illuminate\Http\Request;
 
 class BusController extends Controller
@@ -13,19 +14,8 @@ class BusController extends Controller
      */
     public function index()
     {
-        $contohData = [
-            (object) ['id' => 1, 'nama' => 'Budiman', 'kelas' => 'Eksekutif'],
-            (object) ['id' => 2, 'nama' => 'Budiman', 'kelas' => 'Super Eksekutif'],
-            (object) ['id' => 3, 'nama' => 'Budiman', 'kelas' => 'Best In Class'],
-            (object) ['id' => 4, 'nama' => 'Budiman', 'kelas' => 'Bisnis AC'],
-            (object) ['id' => 5, 'nama' => 'Budiman', 'kelas' => 'Bisnis AC First Class'],
-            (object) ['id' => 6, 'nama' => 'Budiman', 'kelas' => 'Ekonomi Bisnis AC'],
-            (object) ['id' => 7, 'nama' => 'Primajasa', 'kelas' => 'Eksekutif'],
-            (object) ['id' => 8, 'nama' => 'Primajasa', 'kelas' => 'Super Eksekutif'],
-            (object) ['id' => 9, 'nama' => 'Primajasa', 'kelas' => 'AC Bisnis'],
-            (object) ['id' => 1, 'nama' => 'Primajasa', 'kelas' => 'AC Ekonomi']
-        ];
-        return view('admin.bus.home', ['data' => $contohData]);
+        $bus = Bus::all();
+        return view('admin.bus.home', ['data' => $bus]);
     }
 
     /**

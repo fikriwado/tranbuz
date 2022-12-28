@@ -15,15 +15,15 @@ class CreateRuteTable extends Migration
     {
         Schema::create('rute', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('id_bus');
             $table->unsignedBigInteger('id_pemberangkatan');
             $table->unsignedBigInteger('id_pemberhentian');
-            $table->unsignedBigInteger('id_bus');
             $table->time('jam_berangkat', $precision = 0);
             $table->time('jam_sampai', $precision = 0);
             $table->time('jam_transit', $precision = 0);
+            $table->foreign('id_bus')->references('id')->on('bus')->onDelete('cascade');
             $table->foreign('id_pemberangkatan')->references('id')->on('lokasi')->onDelete('cascade');
             $table->foreign('id_pemberhentian')->references('id')->on('lokasi')->onDelete('cascade');
-            $table->foreign('id_bus')->references('id')->on('bus')->onDelete('cascade');
             $table->timestamps();
         });
     }

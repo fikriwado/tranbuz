@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Lokasi;
 use Illuminate\Http\Request;
 
 class LokasiController extends Controller
@@ -13,20 +14,8 @@ class LokasiController extends Controller
      */
     public function index()
     {
-        $contohData = [
-            (object) ['id' => 1, 'nama' => 'Manonjaya', 'kota' => 'Tasikmalaya', 'kode' => 'TSM'],
-            (object) ['id' => 2, 'nama' => 'Salopa', 'kota' => 'Tasikmalaya', 'kode' => 'TSM'],
-            (object) ['id' => 3, 'nama' => 'Pool', 'kota' => 'Tasikmalaya', 'kode' => 'TSM'],
-            (object) ['id' => 4, 'nama' => 'Cibiru', 'kota' => 'Bandung', 'kode' => 'BDG'],
-            (object) ['id' => 5, 'nama' => 'Lembang', 'kota' => 'Bandung', 'kode' => 'BDG'],
-            (object) ['id' => 6, 'nama' => 'Pool', 'kota' => 'Bandung', 'kode' => 'BDG'],
-            (object) ['id' => 7, 'nama' => 'Kp.Rambutan', 'kota' => 'Jakarta', 'kode' => 'JKT'],
-            (object) ['id' => 8, 'nama' => 'Tanjung Priok', 'kota' => 'Jakarta', 'kode' => 'JKT'],
-            (object) ['id' => 9, 'nama' => 'Lebak Bulus', 'kota' => 'Jakarta', 'kode' => 'JKT'],
-            (object) ['id' => 10, 'nama' => 'Pool', 'kota' => 'Jakarta', 'kode' => 'JKT']
-        ];
-
-        return view('admin.lokasi.home', ['data' => $contohData]);
+        $lokasi = Lokasi::all();
+        return view('admin.lokasi.home', ['data' => $lokasi]);
     }
 
     /**
