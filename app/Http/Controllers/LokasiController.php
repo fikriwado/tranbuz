@@ -36,8 +36,21 @@ class LokasiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'nama' => 'required|max:255',
+            'kota' => 'required|max:255',
+            'kode' => 'required|max:255',
+        ]);
+
+        Lokasi::create([
+            'nama' => $request->nama,
+            'kota' => $request->kota,
+            'kode' => $request->kode,
+        ]);
+
+        return redirect('/admin/lokasi')->with('message', 'Data lokasi berhasil ditambahkan');
     }
+
 
     /**
      * Display the specified resource.
@@ -70,7 +83,20 @@ class LokasiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validatedData = $request->validate([
+            'nama' => 'required|max:255',
+            'kota' => 'required|max:255',
+            'kode' => 'required|max:255',
+        ]);
+
+        Lokasi::where('id', $id)->update([
+            'nama' => $request->nama,
+            'kota' => $request->kota,
+            'kode' => $request->kode,
+
+        ]);
+
+        return redirect('/admin/lokasi')->with('message', 'data lokasi berhasil diupdate');
     }
 
     /**
@@ -81,6 +107,7 @@ class LokasiController extends Controller
      */
     public function destroy($id)
     {
-        dd('hapus data lokasi ke ' . $id);
+        Lokasi::destroy($id);
+        return redirect('/admin/lokasi')->with('message', 'data Lokasi  berhasil dihapus');
     }
 }

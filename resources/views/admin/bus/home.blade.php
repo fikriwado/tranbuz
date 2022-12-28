@@ -30,18 +30,19 @@
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
-                  <form>
+                  <form action="{{ route('bus.store') }}" method="POST">
                     <div class="modal-body">
                       <div class="form-group">
                         <label for="namaBus">Nama</label>
-                        <input type="text" class="form-control" id="namaBus" placeholder="Masukkan nama bus">
+                        <input type="text" class="form-control" id="namaBus" name="nama" placeholder="Masukkan nama bus">
                       </div>
                       <div class="form-group">
                         <label for="kelasBus">Kelas</label>
-                        <input type="text" class="form-control" id="kelasBus" placeholder="Masukkan kelas bus">
+                        <input type="text" class="form-control" id="kelasBus" placeholder="Masukkan kelas bus" name="kelas">
                       </div>
                     </div>
                     <div class="modal-footer">
+                      @csrf
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
                       <button type="submit" class="btn btn-primary">Tambah</button>
                     </div>
@@ -50,6 +51,17 @@
               </div>
             </div>
           </div>
+
+          @if (session('message'))
+          <div class="row mb-3">
+            <div class="col-md-12">
+              <div class="alert alert-success mb-1" role="alert">
+                {{ session('message') }}
+              </div>
+            </div>
+          </div>
+        @endif
+
           <div class="table-responsive">
             <table class="table table-bordered" id="dataBus" width="100%" cellspacing="0">
               <thead>
@@ -93,22 +105,28 @@
                                 <span aria-hidden="true">&times;</span>
                               </button>
                             </div>
-                            <form>
+                            <form action="{{ route('bus.update', $item->id) }}" method="POST">
+                  
                               <div class="modal-body">
                                 <div class="form-group">
                                   <label for="namaBus">Nama</label>
-                                  <input type="text" class="form-control" id="namaBus" placeholder="Masukkan nama bus" value="{{ $item->nama }}">
+                                  <input type="text" class="form-control" name="nama" id="namaBus" placeholder="Masukkan nama bus" value="{{ $item->nama }}">
                                 </div>
                                 <div class="form-group">
                                   <label for="kelasBus">Kelas</label>
-                                  <input type="text" class="form-control" id="kelasBus" placeholder="Masukkan kelas bus" value="{{ $item->kelas }}">
+                                  <input type="text" class="form-control" name="kelas" id="kelasBus" placeholder="Masukkan kelas bus" value="{{ $item->kelas }}">
                                 </div>
                               </div>
                               <div class="modal-footer">
+                                @csrf
+                                @method('put')
+                                <input type="hidden" name="id" value="{{ $item->id }}">
+                         
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
                                 <button type="submit" class="btn btn-primary">Simpan</button>
                               </div>
                             </form>
+                      
                           </div>
                         </div>
                       </div>
@@ -127,6 +145,8 @@
                             </div>
                             <div class="modal-footer">
                               <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
+
+                
                               <form id="logout-form" action="{{ route('bus.destroy', $item->id) }}" method="POST">
                                 @csrf
                                 @method('delete')
