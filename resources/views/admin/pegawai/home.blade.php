@@ -107,7 +107,7 @@
                 @foreach ($data as $item)
                   <tr>
                     <td>{{ $i++ }}</td>
-                    <td class="text-center" width="80"><img class="rounded-circle" width="60" src="{{ auth()->user()->profile_photo_url }}"></td>
+                    <td class="text-center" width="80"><img class="rounded-circle" width="60" src="{{ $item->profile_photo_url }}"></td>
                     <td>{{ $item->name }}</td>
                     <td>{{ $item->email }}</td>
                     <td>{{ $item->status === '0' ? 'Pegawai' : 'Admin' }}</td>
