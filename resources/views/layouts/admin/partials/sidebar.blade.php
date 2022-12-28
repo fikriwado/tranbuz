@@ -37,6 +37,14 @@
     <i class="fas fa-fw fa-map-marked-alt"></i>
     <span>Rute</span></a>
   </li>
+  <div class="sidebar-heading">
+    Laporan
+  </div>
+  <li class="nav-item">
+    <a class="nav-link" href="{{ url('admin/rute/laporan') }}">
+    <i class="fas fa-fw fa-map-marked-alt"></i>
+    <span>Laporan Rute</span></a>
+  </li>
   <hr class="sidebar-divider d-none d-md-block">
   <div class="text-center d-none d-md-inline">
     <button class="rounded-circle border-0" id="sidebarToggle"></button>

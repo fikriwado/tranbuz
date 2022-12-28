@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RuteController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\BusController;
 
@@ -42,5 +43,7 @@ Route::middleware([
     Route::resource('/lokasi', 'App\Http\Controllers\LokasiController');
     
     // Rute
+    Route::get('/rute/laporan', [RuteController::class, 'laporan'])->name('laporan');
+    Route::post('/rute/laporan/pdf', [RuteController::class, 'muatLaporan'])->name('muatLaporan');
     Route::resource('/rute', 'App\Http\Controllers\RuteController');
 });

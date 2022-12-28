@@ -17,7 +17,6 @@ class HomeController extends Controller
     public function search(Request $request)
     {
         $lokasi = Lokasi::all()->groupBy('kode');
-
         $rute = Rute::where('id_pemberangkatan', $request->id_pemberangkatan)
                     ->where('id_pemberhentian', $request->id_pemberhentian)
                     ->get();

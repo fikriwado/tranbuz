@@ -81,7 +81,7 @@
           @endif
 
           <div class="table-responsive">
-            <table class="table table-bordered" id="dataBus" width="100%" cellspacing="0">
+            <table class="table table-bordered" id="dataPegawai" width="100%" cellspacing="0">
               <thead>
                 <tr>
                   <th>No</th>
@@ -203,7 +203,7 @@
 <script src="{{ asset('templates/admin/vendor/datatables/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('templates/admin/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
 <script>
-  $(document).ready(() => $('#dataBus').DataTable({
+  $(document).ready(() => $('#dataPegawai').DataTable({
     "pageLength": 5,
     "lengthMenu": [5, 10],
     "language": {
