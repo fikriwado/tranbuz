@@ -15,6 +15,13 @@
   <div class="sidebar-heading">
     Master Data
   </div>
+  @if (auth()->user()->status === '1')
+  <li class="nav-item">
+    <a class="nav-link" href="{{ url('admin/pegawai') }}">
+      <i class="fas fa-fw fa-bus"></i>
+      <span>Pegawai</span></a>
+    </li>
+  @endif
   <li class="nav-item">
     <a class="nav-link" href="{{ url('admin/bus') }}">
     <i class="fas fa-fw fa-bus"></i>

@@ -268,44 +268,47 @@
         </div>
       </div>
     </div>
-    <div class="col-lg-5">
-      <div class="card shadow mb-4">
-        <div
-          class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-          <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
-        </div>
-        <div class="card-body">
-          <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable2" width="100%" cellspacing="0">
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Position</th>
-                  <th>Office</th>
-                  <th>Age</th>
-                </tr>
-              </thead>
-              <tfoot>
-                <tr>
-                  <th>Name</th>
-                  <th>Position</th>
-                  <th>Office</th>
-                  <th>Age</th>
-                </tr>
-              </tfoot>
-              <tbody>
-                <tr>
-                  <td>Tiger Nixon</td>
-                  <td>System Architect</td>
-                  <td>Edinburgh</td>
-                  <td>61</td>
-                </tr>
-              </tbody>
-            </table>
+
+    @if (auth()->user()->status === '1')
+      <div class="col-lg-5">
+        <div class="card shadow mb-4">
+          <div
+            class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-bordered" id="dataTable2" width="100%" cellspacing="0">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Position</th>
+                    <th>Office</th>
+                    <th>Age</th>
+                  </tr>
+                </thead>
+                <tfoot>
+                  <tr>
+                    <th>Name</th>
+                    <th>Position</th>
+                    <th>Office</th>
+                    <th>Age</th>
+                  </tr>
+                </tfoot>
+                <tbody>
+                  <tr>
+                    <td>Tiger Nixon</td>
+                    <td>System Architect</td>
+                    <td>Edinburgh</td>
+                    <td>61</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    @endif
   </div>
 </div>
 @endsection

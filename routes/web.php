@@ -30,6 +30,11 @@ Route::middleware([
 ])->prefix('admin')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
+    // Pegawai
+    Route::resource('/pegawai', 'App\Http\Controllers\PegawaiController')->except([
+        'create', 'show', 'edit'
+    ]);;
+
     // Bus
     Route::resource('/bus', 'App\Http\Controllers\BusController');
     
