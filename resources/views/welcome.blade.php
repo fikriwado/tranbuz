@@ -1,5 +1,7 @@
 @extends('layouts.site.app')
 
+@section('title', 'Home')
+
 @section('content')
 <div class="ftco-blocks-cover-1">
   <div class="ftco-cover-1 overlay" style="background-image: url('{{ asset('templates/site//images/banner.jpg') }}')">

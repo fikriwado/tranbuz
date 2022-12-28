@@ -1,5 +1,7 @@
 @extends('layouts.site.app')
 
+@section('title', 'Search')
+
 @section('content')
 <div class="site-section bg-light text-dark" id="transit-section">
   <div class="container">
