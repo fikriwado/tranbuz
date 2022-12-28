@@ -17,7 +17,7 @@ use App\Http\Controllers\BusController;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/search', [HomeController::class, 'search'])->name('search');
+Route::post('/search', [HomeController::class, 'search'])->name('search');
 
 Route::get('/admin', function () {
     return redirect()->route('dashboard');

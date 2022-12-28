@@ -10,50 +10,36 @@
         <div class="col-lg-12">
           <h1>Transportations &amp; Logistics</h1>
           <p class="mb-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus dolorem eius eligendi esse quod?</p>
-          <form action="{{ url('search') }}" method="GET">
-            <div class="form-group d-flex">
-              <select class="form-control">
-                <option selected disabled>Pemberangkatan</option>
-                <optgroup label="TSM">
-                  <option value="TSM manonjaya">Manonjaya, Tasikmalaya</option>
-                  <option value="TSM salopa">Salopa, Tasikmalaya</option>
-                  <option value="TSM tasikmalaya">Tasikmalaya</option>
-                </optgroup>
-                <optgroup label="BDG">
-                  <option value="BDG cibiru">Cibiru, Bandung</option>
-                  <option value="BDG lembang">Lembang, Bandung</option>
-                  <option value="BDG bandung">Bandung</option>
-                </optgroup>
-                <optgroup label="JKT">
-                  <option value="JKT rambutan">Kp.Rambutan, Jakarta</option>
-                  <option value="JKT tanjung priok">Tanjung Priok, Jakarta</option>
-                  <option value="JKT lebak bulus">Lebak Bulus, Jakarta</option>
-                  <option value="JKT jakarta pusat">Jakarta Pusat</option>
-                </optgroup>
-              </select>
-              <select class="form-control">
-                <option selected disabled>Pemberhentian</option>
-                <optgroup label="TSM">
-                  <option value="TSM manonjaya">Manonjaya, Tasikmalaya</option>
-                  <option value="TSM salopa">Salopa, Tasikmalaya</option>
-                  <option value="TSM tasikmalaya">Tasikmalaya</option>
-                </optgroup>
-                <optgroup label="BDG">
-                  <option value="BDG cibiru">Cibiru, Bandung</option>
-                  <option value="BDG lembang">Lembang, Bandung</option>
-                  <option value="BDG bandung">Bandung</option>
-                </optgroup>
-                <optgroup label="JKT">
-                  <option value="JKT rambutan">Kp.Rambutan, Jakarta</option>
-                  <option value="JKT tanjung priok">Tanjung Priok, Jakarta</option>
-                  <option value="JKT lebak bulus">Lebak Bulus, Jakarta</option>
-                  <option value="JKT jakarta pusat">Jakarta Pusat</option>
-                </optgroup>
-              </select>
-              <input type="date" class="form-control" placeholder="Your tracking number">
-              <input type="submit" class="btn btn-primary text-white px-4" value="Cek Transit">
+          <div class="row d-flex justify-content-center">
+            <div class="col-lg-10">
+              <form action="{{ url('search') }}" method="POST">
+                <div class="form-group d-flex">
+                  <select name="id_pemberangkatan" class="form-control" required>
+                    <option selected disabled value="">Pemberangkatan</option>
+                    @foreach ($lokasi as $item)
+                      <optgroup label="{{ $item[0]->kode }}">
+                        @foreach ($item as $row)
+                        <option value="{{ $row->id }}">{{ $row->nama }}, {{ $row->kota }}</option>
+                        @endforeach
+                      </optgroup>
+                    @endforeach
+                  </select>
+                  <select name="id_pemberhentian" class="form-control" required>
+                    <option selected disabled value="">Pemberhentian</option>
+                    @foreach ($lokasi as $item)
+                      <optgroup label="{{ $item[0]->kode }}">
+                        @foreach ($item as $row)
+                        <option value="{{ $row->id }}">{{ $row->nama }}, {{ $row->kota }}</option>
+                        @endforeach
+                      </optgroup>
+                    @endforeach
+                  </select>
+                  @csrf
+                  <input type="submit" class="btn btn-primary text-white px-4" value="Cek Transit">
+                </div>
+              </form>
             </div>
-          </form>
+          </div>
         </div>
       </div>
     </div>
