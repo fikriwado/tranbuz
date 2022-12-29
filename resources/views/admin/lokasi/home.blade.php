@@ -25,27 +25,28 @@
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="tambahBusLabel">Edit</h5>
+                    <h5 class="modal-title" id="tambahBusLabel">Tambah</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
-                  <form>
+                  <form action="{{ route('lokasi.store') }}" method="POST">
                     <div class="modal-body">
                       <div class="form-group">
                         <label for="namaLokasi">Nama</label>
-                        <input type="text" class="form-control" id="namaLokasi" placeholder="Masukkan nama lokasi">
+                        <input type="text" class="form-control" name="nama" id="namaLokasi" placeholder="Masukkan nama lokasi">
                       </div>
                       <div class="form-group">
                         <label for="kotaLokasi">Kota</label>
-                        <input type="text" class="form-control" id="kotaLokasi" placeholder="Masukkan kota lokasi">
+                        <input type="text" class="form-control" name="kota" id="kotaLokasi" placeholder="Masukkan kota lokasi">
                       </div>
                       <div class="form-group">
                         <label for="kodeLokasi">Kode</label>
-                        <input type="text" class="form-control" id="kodeLokasi" placeholder="Masukkan kode lokasi">
+                        <input type="text" class="form-control" name="kode" id="kodeLokasi" placeholder="Masukkan kode lokasi">
                       </div>
                     </div>
                     <div class="modal-footer">
+                      @csrf
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
                       <button type="submit" class="btn btn-primary">Tambah</button>
                     </div>
@@ -54,6 +55,18 @@
               </div>
             </div>
           </div>
+
+          @if (session('message'))
+          <div class="row mb-3">
+            <div class="col-md-12">
+              <div class="alert alert-success mb-1" role="alert">
+                {{ session('message') }}
+              </div>
+            </div>
+          </div>
+        @endif
+
+
           <div class="table-responsive">
             <table class="table table-bordered" id="dataLokasi" width="100%" cellspacing="0">
               <thead>
@@ -100,22 +113,25 @@
                                 <span aria-hidden="true">&times;</span>
                               </button>
                             </div>
-                            <form>
+                            <form action="{{ route('lokasi.update', $item->id) }}" method="POST">
                               <div class="modal-body">
                                 <div class="form-group">
                                   <label for="namaLokasi">Nama</label>
-                                  <input type="text" class="form-control" id="namaLokasi" placeholder="Masukkan nama bus" value="{{ $item->nama }}">
+                                  <input type="text" class="form-control" name="nama" id="namaLokasi" placeholder="Masukkan nama bus" value="{{ $item->nama }}">
                                 </div>
                                 <div class="form-group">
                                   <label for="kotaLokasi">Kota</label>
-                                  <input type="text" class="form-control" id="kotaLokasi" placeholder="Masukkan kelas bus" value="{{ $item->kota }}">
+                                  <input type="text" class="form-control" name="kota" id="kotaLokasi" placeholder="Masukkan kelas bus" value="{{ $item->kota }}">
                                 </div>
                                 <div class="form-group">
                                   <label for="kodeLokasi">Kode</label>
-                                  <input type="text" class="form-control" id="kodeLokasi" placeholder="Masukkan kelas bus" value="{{ $item->kode }}">
+                                  <input type="text" class="form-control" name="kode" id="kodeLokasi" placeholder="Masukkan kelas bus" value="{{ $item->kode }}">
                                 </div>
                               </div>
                               <div class="modal-footer">
+                                @csrf
+                                @method('put')
+                                <input type="hidden" name="id" value="{{ $item->id }}">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
                                 <button type="submit" class="btn btn-primary">Simpan</button>
                               </div>

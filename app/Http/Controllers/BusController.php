@@ -36,7 +36,17 @@ class BusController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'nama' => 'required|max:255',
+            'kelas' => 'required|max:255',
+        ]);
+
+        Bus::create([
+            'nama' => $request->nama,
+            'kelas' => $request->kelas
+        ]);
+
+        return redirect('/admin/bus')->with('message', 'Data bus berhasil ditambahkan');
     }
 
     /**
@@ -70,7 +80,18 @@ class BusController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validatedData = $request->validate([
+            'nama' => 'required|max:255',
+            'kelas' => 'required|max:255',
+        ]);
+
+        Bus::where('id', $id)->update([
+            'nama' => $request->nama,
+            'kelas' => $request->kelas,
+
+        ]);
+
+        return redirect('/admin/bus')->with('message', 'data berhasil diupdate');
     }
 
     /**
@@ -81,6 +102,7 @@ class BusController extends Controller
      */
     public function destroy($id)
     {
-        dd('hapus data bus ke ' . $id);
+        Bus::destroy($id);
+        return redirect('/admin/bus')->with('message', 'data bus  berhasil dihapus');
     }
 }
