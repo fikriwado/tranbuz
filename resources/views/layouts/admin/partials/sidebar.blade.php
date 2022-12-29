@@ -18,7 +18,7 @@
   @if (auth()->user()->status === '1')
   <li class="nav-item">
     <a class="nav-link" href="{{ url('admin/pegawai') }}">
-      <i class="fas fa-fw fa-bus"></i>
+      <i class="fas fa-fw fa-user"></i>
       <span>Pegawai</span></a>
     </li>
   @endif

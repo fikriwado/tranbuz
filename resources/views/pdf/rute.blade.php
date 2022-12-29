@@ -27,13 +27,13 @@
     <table>
       <thead>
         <tr>
-          <th style="width: 50px;">No</th>
-          <th style="width: 100px;">Bus</th>
-          <th style="width: 185px;">Pemberangkatan</th>
+          <th style="width: 30px;">No</th>
+          <th style="width: 180px;">Bus</th>
+          <th style="width: 175px;">Pemberangkatan</th>
           <th>Pemberhentian</th>
-          <th style="width: 130px;">Jam Berangkat</th>
-          <th style="width: 100px;">Jam Sampai</th>
-          <th style="width: 100px;">Jam Transit</th>
+          <th style="width: 110px;">Jam Berangkat</th>
+          <th style="width: 90px;">Jam Sampai</th>
+          <th style="width: 90px;">Jam Transit</th>
         </tr>
       </thead>
       <tbody>
@@ -41,7 +41,7 @@
         @foreach ($rute as $item)
         <tr>
           <td style="text-align: center;">{{ $i++ }}</td>
-          <td>{{ $item->bus->nama }}</td>
+          <td>{{ $item->bus->nama }} {{ $item->bus->kelas }}</td>
           <td>{{ $item->pemberangkatan->nama }}, {{ $item->pemberangkatan->kota }}</td>
           <td>{{ $item->pemberhentian->nama }}, {{ $item->pemberhentian->kota }}</td>
           <td>{{ strtoupper(date('g:i a', strtotime($item->jam_berangkat))) }}</td>

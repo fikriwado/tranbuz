@@ -97,7 +97,7 @@
                 @foreach ($data as $item)
                   <tr>
                     <td>{{ $i++ }}</td>
-                    <td>{{ $item->bus->nama }}</td>
+                    <td>{{ $item->bus->nama }} {{ $item->bus->kelas }}</td>
                     <td>{{ $item->pemberangkatan->nama }}, {{ $item->pemberangkatan->kota }}</td>
                     <td>{{ $item->pemberhentian->nama }}, {{ $item->pemberhentian->kota }}</td>
                     <td>{{ $item->jam_berangkat }}</td>
