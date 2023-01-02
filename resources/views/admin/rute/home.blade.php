@@ -25,39 +25,55 @@
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="tambahBusLabel">Edit</h5>
+                    <h5 class="modal-title" id="tambahBusLabel">Tambah Rute</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
-                  <form>
+                  <form action="{{ route('rute.store') }}" method="POST">
                     <div class="modal-body">
                       <div class="form-group">
-                        <label for="idPemberangkatan">Pemberangkatan</label>
-                        <select class="form-control" id="idPemberangkatan">
-                          <option value="">Pool, Tasikmalaya</option>
+                        <label for="idBus">Bus</label>
+                        <select class="form-control" name="id_bus" id="idBus">
+                          <option selected disabled value="0">Pilih Bus</option>
+                          @foreach ($bus as $item)
+                            <option value="{{ $item->id }}">{{ $item->nama }} {{ $item->kelas }}</option>
+                          @endforeach
                         </select>
                       </div>
                       <div class="form-group">
                         <label for="idPemberangkatan">Pemberangkatan</label>
-                        <select class="form-control" id="idPemberangkatan">
-                          <option value="">Cibiru, Bandung</option>
+                        <select class="form-control" name="id_pemberangkatan" id="idPemberangkatan">
+                          <option selected disabled value="0">Pilih Pemberangkatan</option>
+                          @foreach ($lokasi as $item)
+                            <option value="{{ $item->id }}">{{ $item->nama }} {{ $item->kota }}</option>
+                          @endforeach
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="idPemberhentian">Pemberhentian</label>
+                        <select class="form-control" name="id_pemberhentian" id="idPemberhentian">
+                          <option selected disabled value="0">Pilih Pemberhentian</option>
+                          @foreach ($lokasi as $item)
+                            <option value="{{ $item->id }}">{{ $item->nama }} {{ $item->kota }}</option>
+                          @endforeach
                         </select>
                       </div>
                       <div class="form-group">
                         <label for="jamBerangkat">Jam Berangkat</label>
-                        <input type="time" class="form-control" id="jamBerangkat" placeholder="Masukkan kelas bus">
+                        <input type="time" class="form-control" name="jam_berangkat" id="jamBerangkat" placeholder="Masukkan kelas bus">
                       </div>
                       <div class="form-group">
                         <label for="jamSampai">Jam Sampai</label>
-                        <input type="time" class="form-control" id="jamSampai" placeholder="Masukkan kelas bus">
+                        <input type="time" class="form-control" name="jam_sampai" id="jamSampai" placeholder="Masukkan kelas bus">
                       </div>
                       <div class="form-group">
                         <label for="jamTransit">Jam Transit</label>
-                        <input type="time" class="form-control" id="jamTransit" placeholder="Masukkan kelas bus">
+                        <input type="time" class="form-control" name="jam_transit" id="jamTransit" placeholder="Masukkan kelas bus">
                       </div>
                     </div>
                     <div class="modal-footer">
+                      @csrf
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
                       <button type="submit" class="btn btn-primary">Simpan</button>
                     </div>

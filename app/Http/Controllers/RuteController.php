@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Pdf;
+use App\Models\Bus;
 use App\Models\Rute;
 use App\Models\Lokasi;
 use Illuminate\Http\Request;
@@ -16,8 +17,14 @@ class RuteController extends Controller
      */
     public function index()
     {
+        $bus = Bus::all();
         $rute = Rute::all();
-        return view('admin.rute.home', ['data' => $rute]);
+        $lokasi = Lokasi::all();
+        return view('admin.rute.home', [
+            'bus' => $bus,
+            'data' => $rute,
+            'lokasi' => $lokasi
+        ]);
     }
 
     /**
@@ -38,7 +45,22 @@ class RuteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request);
+        // $validatedData = $request->validate([
+        //     'nama' => 'required|max:255',
+        //     'kelas' => 'required|max:255',
+        // ]);
+
+        Rute::create([
+            'id_bus' => $request->id_bus,
+            'id_pemberangkatan' => $request->id_pemberangkatan,
+            'id_pemberhentian' => $request->id_pemberhentian,
+            'jam_berangkat' => $request->jam_berangkat,
+            'jam_sampai' => $request->jam_sampai,
+            'jam_transit' => $request->jam_transit
+        ]);
+
+        return redirect('/admin/bus')->with('message', 'Data bus berhasil ditambahkan');
     }
 
     /**
