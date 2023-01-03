@@ -191,6 +191,7 @@
                                   <label for="jamTransit">Jam Transit</label>
                                   <input type="time" class="form-control" name="jam_transit" id="jamTransit" value="{{ $item->jam_transit }}">
                                 </div>
+                              </div>
                               <div class="modal-footer">
                                 @csrf
                                 @method('put')
