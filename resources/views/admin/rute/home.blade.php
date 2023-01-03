@@ -82,6 +82,19 @@
               </div>
             </div>
           </div>
+
+
+          @if (session('message'))
+          <div class="row mb-3">
+            <div class="col-md-12">
+              <div class="alert alert-success mb-1" role="alert">
+                {{ session('message') }}
+              </div>
+            </div>
+          </div>
+        @endif
+
+
           <div class="table-responsive">
             <table class="table table-bordered" id="dataRute" width="100%" cellspacing="0">
               <thead>
@@ -137,36 +150,53 @@
                                 <span aria-hidden="true">&times;</span>
                               </button>
                             </div>
-                            <form>
+                            <form action="{{ route('rute.update', $item->id) }}" method="POST">
                               <div class="modal-body">
                                 <div class="form-group">
-                                  <label for="idPemberangkatan">Pemberangkatan</label>
-                                  <select class="form-control" id="idPemberangkatan">
-                                    <option value="">Pool, Tasikmalaya</option>
+                                  <label for="idBus">Bus</label>
+                                  <select class="form-control" name="id_bus" id="idBus">
+                                   <option  value="{{ $item->id }}">{{ $item->bus->nama }} {{ $item->bus->kelas }}</option>
+                                    @foreach ($bus as $itemz)
+                                      <option value="{{ $itemz->id }}">{{ $itemz->nama }} {{ $itemz->kelas }}</option>
+                                    @endforeach
                                   </select>
                                 </div>
                                 <div class="form-group">
                                   <label for="idPemberangkatan">Pemberangkatan</label>
-                                  <select class="form-control" id="idPemberangkatan">
-                                    <option value="">Cibiru, Bandung</option>
+                                  <select class="form-control" name="id_pemberangkatan" id="idPemberangkatan">
+                                    <option  value="{{ $item->id }}">{{ $item->pemberangkatan->nama }}, {{ $item->pemberangkatan->kota }}</option>
+                                    @foreach ($lokasi as $itemz)
+                                      <option value="{{ $itemz->id }}">{{ $itemz->nama }} {{ $itemz->kota }}</option>
+                                    @endforeach
+                                  </select>
+                                  </select>
+                                </div>
+                                <div class="form-group">
+                                  <select class="form-control" name="id_pemberhentian" id="idPemberhentian">
+                                    <option  value="{{ $item->id }}">{{ $item->pemberhentian->nama }}, {{ $item->pemberhentian->kota }} </option>
+                                    @foreach ($lokasi as $itemz)
+                                      <option value="{{ $itemz->id }}">{{ $itemz->nama }} {{ $itemz->kota }}</option>
+                                    @endforeach
                                   </select>
                                 </div>
                                 <div class="form-group">
                                   <label for="jamBerangkat">Jam Berangkat</label>
-                                  <input type="time" class="form-control" id="jamBerangkat" placeholder="Masukkan kelas bus" value="{{ $item->jam_berangkat }}">
+                                  <input type="time" class="form-control" name="jam_berangkat" id="jamBerangkat" value="{{ $item->jam_berangkat }}">
                                 </div>
                                 <div class="form-group">
                                   <label for="jamSampai">Jam Sampai</label>
-                                  <input type="time" class="form-control" id="jamSampai" placeholder="Masukkan kelas bus" value="{{ $item->jam_sampai }}">
+                                  <input type="time" class="form-control" name="jam_sampai" id="jamSampai" value="{{ $item->jam_sampai }}">
                                 </div>
                                 <div class="form-group">
                                   <label for="jamTransit">Jam Transit</label>
-                                  <input type="time" class="form-control" id="jamTransit" placeholder="Masukkan kelas bus" value="{{ $item->jam_transit }}">
+                                  <input type="time" class="form-control" name="jam_transit" id="jamTransit" value="{{ $item->jam_transit }}">
                                 </div>
-                              </div>
                               <div class="modal-footer">
+                                @csrf
+                                @method('put')
+                                <input type="hidden" name="id" value="{{ $item->id }}">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
-                                <button type="submit" class="btn btn-primary">Simpan</button>
+                                <button type="submit" class="btn btn-primary">update</button>
                               </div>
                             </form>
                           </div>

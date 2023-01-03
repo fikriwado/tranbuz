@@ -60,7 +60,7 @@ class RuteController extends Controller
             'jam_transit' => $request->jam_transit
         ]);
 
-        return redirect('/admin/bus')->with('message', 'Data bus berhasil ditambahkan');
+        return redirect('/admin/rute')->with('message', 'Data rute berhasil ditambahkan');
     }
 
     /**
@@ -94,7 +94,17 @@ class RuteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Rute::where('id', $id)->update([
+            'id_bus' => $request->id_bus,
+            'id_pemberangkatan' => $request->id_pemberangkatan,
+            'id_pemberhentian' => $request->id_pemberhentian,
+            'jam_berangkat' => $request->jam_berangkat,
+            'jam_sampai' => $request->jam_sampai,
+            'jam_transit' => $request->jam_transit
+
+        ]);
+
+        return redirect('/admin/rute')->with('message', 'data berhasil diupdate');
     }
 
     /**
@@ -105,7 +115,8 @@ class RuteController extends Controller
      */
     public function destroy($id)
     {
-        dd('hapus data rute ke ' . $id);
+        Rute::destroy($id);
+        return redirect('/admin/rute')->with('message', 'data rute  berhasil dihapus');
     }
 
     public function laporan()
@@ -117,8 +128,8 @@ class RuteController extends Controller
     public function muatLaporan(Request $request)
     {
         $rute = Rute::where('id_pemberangkatan', $request->id_pemberangkatan)
-                    ->where('id_pemberhentian', $request->id_pemberhentian)
-                    ->get();
+            ->where('id_pemberhentian', $request->id_pemberhentian)
+            ->get();
         if ($request->type) $rute = Rute::all();
         $pdf = Pdf::loadView('pdf.rute', ['rute' => $rute]);
         return $pdf->setPaper('a4', 'landscape')->stream('rute.pdf');

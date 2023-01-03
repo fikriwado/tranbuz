@@ -121,7 +121,7 @@
                                 </div>
                                 <div class="form-group">
                                   <label for="kotaLokasi">Kota</label>
-                                  <input type="text" class="form-control" name="kota" id="kotaLokasi" placeholder="Masukkan kelas bus" value="{{ $item->kota }}">
+                                  <input type="text" class="form-control" name="kota" id="kotaLokasi"  value="{{ $item->kota }}">
                                 </div>
                                 <div class="form-group">
                                   <label for="kodeLokasi">Kode</label>
