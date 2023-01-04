@@ -169,7 +169,7 @@
                                       <option value="{{ $itemz->id }}">{{ $itemz->nama }} {{ $itemz->kota }}</option>
                                     @endforeach
                                   </select>
-                                  </select>
+                             
                                 </div>
                                 <div class="form-group">
                                   <select class="form-control" name="id_pemberhentian" id="idPemberhentian">
