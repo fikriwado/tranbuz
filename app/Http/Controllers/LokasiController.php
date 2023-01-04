@@ -14,7 +14,7 @@ class LokasiController extends Controller
      */
     public function index()
     {
-        $lokasi = Lokasi::all();
+        $lokasi = Lokasi::orderBy('id', 'desc')->get();
         return view('admin.lokasi.home', ['data' => $lokasi]);
     }
 

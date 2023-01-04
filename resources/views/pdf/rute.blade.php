@@ -37,18 +37,24 @@
         </tr>
       </thead>
       <tbody>
-        @php $i = 1 @endphp
-        @foreach ($rute as $item)
-        <tr>
-          <td style="text-align: center;">{{ $i++ }}</td>
-          <td>{{ $item->bus->nama }} {{ $item->bus->kelas }}</td>
-          <td>{{ $item->pemberangkatan->nama }}, {{ $item->pemberangkatan->kota }}</td>
-          <td>{{ $item->pemberhentian->nama }}, {{ $item->pemberhentian->kota }}</td>
-          <td>{{ strtoupper(date('g:i a', strtotime($item->jam_berangkat))) }}</td>
-          <td>{{ strtoupper(date('g:i a', strtotime($item->jam_sampai))) }}</td>
-          <td>{{ strtoupper(date('g:i a', strtotime($item->jam_transit))) }}</td>
-        </tr>
-        @endforeach
+        @if ($rute->count() > 0)
+          @php $i = 1 @endphp
+          @foreach ($rute as $item)
+          <tr>
+            <td style="text-align: center;">{{ $i++ }}</td>
+            <td>{{ $item->bus->nama }} {{ $item->bus->kelas }}</td>
+            <td>{{ $item->pemberangkatan->nama }}, {{ $item->pemberangkatan->kota }}</td>
+            <td>{{ $item->pemberhentian->nama }}, {{ $item->pemberhentian->kota }}</td>
+            <td>{{ strtoupper(date('g:i a', strtotime($item->jam_berangkat))) }}</td>
+            <td>{{ strtoupper(date('g:i a', strtotime($item->jam_sampai))) }}</td>
+            <td>{{ strtoupper(date('g:i a', strtotime($item->jam_transit))) }}</td>
+          </tr>
+          @endforeach
+        @else
+          <tr>
+            <td colspan="7" align="center" style="padding: 50px 0;">Maaf rute tidak ditemukan</td>
+          </tr>
+        @endif
       </tbody>
     </table>
   </body>

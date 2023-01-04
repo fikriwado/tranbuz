@@ -18,7 +18,7 @@ class RuteController extends Controller
     public function index()
     {
         $bus = Bus::all();
-        $rute = Rute::all();
+        $rute = Rute::orderBy('id', 'desc')->get();
         $lokasi = Lokasi::all();
         return view('admin.rute.home', [
             'bus' => $bus,
@@ -45,12 +45,6 @@ class RuteController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
-        // $validatedData = $request->validate([
-        //     'nama' => 'required|max:255',
-        //     'kelas' => 'required|max:255',
-        // ]);
-
         Rute::create([
             'id_bus' => $request->id_bus,
             'id_pemberangkatan' => $request->id_pemberangkatan,

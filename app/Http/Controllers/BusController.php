@@ -14,7 +14,7 @@ class BusController extends Controller
      */
     public function index()
     {
-        $bus = Bus::all();
+        $bus = Bus::orderBy('id', 'desc')->get();
         return view('admin.bus.home', ['data' => $bus]);
     }
 
